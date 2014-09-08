@@ -1,21 +1,21 @@
 <?php
 /**
- * Цей файл використовується для тестування методів. Цей файл потрібно запускати з консолі
- * aбо браузера наступними командами
+ * This file is used for methods testing. Run this file from console or from web browser
+ * using the commands below:
  *
  * Command Line
  * php run.php %method%,
  *
- * %method% - метод, який потрібно виконати (наприклад, cart.create, product.list і т.д.).
+ * %method% - define the method you need to run (for example, cart.create, product.list, etc.).
  *
  * Browser
  * http://localhost/code_sample_php/run.php?method=%method%
  *
- * %method% - метод, який потрібно виконати (наприклад, cart.create, product.list і т.д.).
+ * %method% - define the method you need to run (for example, cart.create, product.list, etc.).
  *
- * Використовуються тестові дані з lib/Api2cart/TestData.php
+ * Using test data of lib/Api2cart/TestData.php
  *
- * Детальніше справку по методах дивиться,будь-ласка, тут - http://docs.api2cart.com/
+ * For more details visit http://docs.api2cart.com/
  *
  */
 include_once 'Api.php';
@@ -58,7 +58,7 @@ class Run
     }
 
     if(!isset($method[0]) || empty($method[0]) ||
-       !isset($method[1]) || empty($method[1])) {
+      !isset($method[1]) || empty($method[1])) {
 
       throw new Exception('Method ' . implode('.', $method) . ' not found', 1);
     }
@@ -124,17 +124,17 @@ class Run
        * $this->_api->order()->apiAdd()
        */
       $result = call_user_func(
-                  array(
-                        call_user_func(
-                          array(
-                            $this->_api,
-                            $method['section']
-                          )
-                        ),
-                        $method['method']
-                  ),
-                  TestData::data($method)
-                );
+        array(
+          call_user_func(
+            array(
+              $this->_api,
+              $method['section']
+            )
+          ),
+          $method['method']
+        ),
+        TestData::data($method)
+      );
 
 
       //View result
